@@ -8,6 +8,7 @@ namespace SMSMicroService
 {
 	internal class SmsSentEvent
 	{
+        public required bool SmsSent { get; set; }
         public required string PhoneNumber { get; set; }
         public required string SmsText { get; set; }
         public required DateTime Timestamp { get; set; }

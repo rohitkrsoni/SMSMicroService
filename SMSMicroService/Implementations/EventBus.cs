@@ -5,33 +5,19 @@ namespace SMSMicroService.Implementations
 {
 	internal class EventBus: IEventBus
 	{
-        private readonly Dictionary<Type, List<Func<object, Task>>> _eventHandlers;
+        private readonly List<Object> _publishedEvents;
 
         public EventBus()
         {
-            _eventHandlers = new Dictionary<Type, List<Func<object, Task>>>();
+			_publishedEvents = [];
         }
 
-        public void Subscribe<T>(Func<T, Task> handler)
+        public async Task PublishEventAsync<T>(T evt)
         {
-            if (!_eventHandlers.TryGetValue(typeof(T), out var handlers))
-            {
-                handlers = new List<Func<object, Task>>();
-                _eventHandlers.Add(typeof(T), handlers);
+            if (evt != null) {
+                _publishedEvents.Add(evt);
             }
-
-            handlers.Add(async @event => await handler((T)@event));
-        }
-
-        public async Task PublishEventAsync<T>(T @event)
-        {
-            if (_eventHandlers.TryGetValue(typeof(T), out var handlers))
-            {
-                foreach (var handler in handlers)
-                {
-					await handler(@event);
-                }
-            }
+            await Task.Delay(0);
         }
     }
 }

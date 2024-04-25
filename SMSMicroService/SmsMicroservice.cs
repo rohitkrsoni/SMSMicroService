@@ -35,22 +35,22 @@ namespace SMSMicroService
         {
             try
             {
-                using (var httpClient = new HttpClient())
-                {
-                    var requestContent = new StringContent($"{{'PhoneNumber': '{command.PhoneNumber}', 'SmsText': '{command.SmsText}'}}");
-                    var response = await httpClient.PostAsync("https://4kvv1.wiremockapi.cloud/sendSms", requestContent);
+				using var httpClient = new HttpClient();
 
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        _logger.Log($"Failed to send SMS to {command.PhoneNumber}. Status code: {response.StatusCode}");
-                        // Retry can be implemented
-                    }
+				var requestContent = new StringContent($"{{'PhoneNumber': '{command.PhoneNumber}', 'SmsText': '{command.SmsText}'}}");
+				var response = await httpClient.PostAsync("https://4kvv1.wiremockapi.cloud/sendSms", requestContent);
 
-                    _logger.Log($"SMS sent successfully to {command.PhoneNumber}");
+				if (!response.IsSuccessStatusCode)
+				{
+					_logger.Log($"Failed to send SMS to {command.PhoneNumber}. Status code: {response.StatusCode}");
+					return new SmsSentEvent { SmsSent = false, PhoneNumber = command.PhoneNumber, SmsText = command.SmsText, Timestamp = DateTime.UtcNow };
+					// Retry can be implemented
+				}
 
-                    return new SmsSentEvent { PhoneNumber = command.PhoneNumber, SmsText = command.SmsText, Timestamp = DateTime.UtcNow };
-                }
-            }
+				_logger.Log($"SMS sent successfully to {command.PhoneNumber}");
+
+				return new SmsSentEvent { SmsSent = true, PhoneNumber = command.PhoneNumber, SmsText = command.SmsText, Timestamp = DateTime.UtcNow };
+			}
             catch (Exception ex)
             {
                 _logger.Log($"Error sending SMS to {command.PhoneNumber}: {ex.Message}");
