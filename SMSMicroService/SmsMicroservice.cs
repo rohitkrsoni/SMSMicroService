@@ -2,13 +2,12 @@
 
 namespace SMSMicroService
 {
-	internal class SmsMicroservice
+	public class SmsMicroservice
 	{
         private readonly IMessageQueue _messageQueue;
         private readonly IEventBus _eventBus;
         private readonly ILogger _logger;
-
-        public SmsMicroservice(IMessageQueue messageQueue, IEventBus eventBus, ILogger logger)
+		public SmsMicroservice(IMessageQueue messageQueue, IEventBus eventBus, ILogger logger)
         {
             _messageQueue = messageQueue;
             _eventBus = eventBus;

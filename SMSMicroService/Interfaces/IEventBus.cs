@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SMSMicroService.Interfaces
 {
-	internal interface IEventBus
+	public interface IEventBus
 	{
         Task PublishEventAsync<T>(T @event);
     }

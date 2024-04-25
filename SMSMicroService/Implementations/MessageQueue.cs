@@ -4,7 +4,7 @@ using SMSMicroService.Helper;
 
 namespace SMSMicroService.Implementations
 {
-	internal class MessageQueue: IMessageQueue
+	public class MessageQueue: IMessageQueue
 	{
         private readonly ConcurrentQueue<object> _queue;
 

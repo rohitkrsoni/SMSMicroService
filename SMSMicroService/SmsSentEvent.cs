@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SMSMicroService
 {
-	internal class SmsSentEvent
+	public class SmsSentEvent
 	{
         public required bool SmsSent { get; set; }
         public required string PhoneNumber { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SMSMicroService.Implementations
 {
-	internal class ConsoleLogger: ILogger
+	public class ConsoleLogger: ILogger
 	{
         public void Log(string message)
         {

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSMicroService", "SMSMicroService\SMSMicroService.csproj", "{7C478F74-3D1C-4897-8F18-D6ABA883E53C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsMicroservice.Tests", "SmsMicroservice.Tests\SmsMicroservice.Tests.csproj", "{258FD611-0DFB-48B9-84B4-19EC5DB6185D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7C478F74-3D1C-4897-8F18-D6ABA883E53C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C478F74-3D1C-4897-8F18-D6ABA883E53C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C478F74-3D1C-4897-8F18-D6ABA883E53C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{258FD611-0DFB-48B9-84B4-19EC5DB6185D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{258FD611-0DFB-48B9-84B4-19EC5DB6185D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{258FD611-0DFB-48B9-84B4-19EC5DB6185D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{258FD611-0DFB-48B9-84B4-19EC5DB6185D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

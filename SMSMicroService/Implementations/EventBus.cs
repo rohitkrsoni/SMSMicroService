@@ -3,7 +3,7 @@
 
 namespace SMSMicroService.Implementations
 {
-	internal class EventBus: IEventBus
+	public class EventBus: IEventBus
 	{
         private readonly List<Object> _publishedEvents;
 

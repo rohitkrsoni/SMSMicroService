@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SMSMicroService.Interfaces
 {
-	internal interface IMessageQueue
+	public interface IMessageQueue
 	{
         Task<T> ReceiveMessageAsync<T>();
         public void SendMessage<T>(T message);
