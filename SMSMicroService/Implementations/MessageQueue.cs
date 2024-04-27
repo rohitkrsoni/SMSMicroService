@@ -30,7 +30,7 @@ namespace SMSMicroService.Implementations
                 {
                     return (T)message;
                 }
-                await Task.Delay(1000); // Adjust delay according to your requirement
+                await Task.Delay(1000);
             }
         }
 
@@ -41,7 +41,7 @@ namespace SMSMicroService.Implementations
                 var phoneNumber = PhoneNumberHelper.GenerateRandomPhoneNumber();
                 var smsText = TextMessageHelper.GenerateRandomTextMessage();
                 SendMessage(new SendSmsCommand { PhoneNumber = phoneNumber, SmsText = smsText });
-                Thread.Sleep(1500); // Adjust delay according to your requirement
+                Thread.Sleep(1500);
             }
         }
     }

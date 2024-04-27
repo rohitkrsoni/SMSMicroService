@@ -19,5 +19,10 @@ namespace SMSMicroService.Implementations
             }
             await Task.Delay(0);
         }
+
+        public List<object> GetPublishedEvents()
+        {
+            return _publishedEvents;
+        }
     }
 }

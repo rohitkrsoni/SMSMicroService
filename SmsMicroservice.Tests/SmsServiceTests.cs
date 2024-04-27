@@ -36,12 +36,27 @@ namespace SmsMicroservice.Tests
 
             // Assert
             Assert.NotNull(result);
+            Assert.True(result.SmsSent);
             Assert.Equal(command.PhoneNumber, result.PhoneNumber);
             Assert.Equal(command.SmsText, result.SmsText);
         }
 
+        [Fact]
+        public async Task PublishEventAsync_AddsEventToList()
+        {
+            // Arrange
+            var testEvent = new SmsSentEvent() {
+                SmsSent=true, 
+                PhoneNumber="7006789876", 
+                SmsText="Hello from test", 
+                Timestamp=DateTime.Now
+            };
 
+            // Act
+            await _eventBus.PublishEventAsync(testEvent);
 
-
+            // Assert
+            Assert.Contains(testEvent, _eventBus.GetPublishedEvents());
+        }
     }
 }
