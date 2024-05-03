@@ -41,22 +41,24 @@ namespace SmsMicroservice.Tests
             Assert.Equal(command.SmsText, result.SmsText);
         }
 
-        [Fact]
-        public async Task PublishEventAsync_AddsEventToList()
-        {
-            // Arrange
-            var testEvent = new SmsSentEvent() {
-                SmsSent=true, 
-                PhoneNumber="7006789876", 
-                SmsText="Hello from test", 
-                Timestamp=DateTime.Now
-            };
+		[Fact]
+		public async Task SendSmsAsync_InValidCommand_ReturnsSmsSentEvent()
+		{
+			// Arrange
+			var command = new SendSmsCommand
+			{
+				PhoneNumber = "1234567890", // Invalid PhoneNumber
+				SmsText = "Hello from ABC!" // Invalid TextMessage
+			};
 
-            // Act
-            await _eventBus.PublishEventAsync(testEvent);
+			// Act
+			var result = await InvokeSendSmsAsync(command);
 
-            // Assert
-            Assert.Contains(testEvent, _eventBus.GetPublishedEvents());
-        }
+			// Assert
+			Assert.NotNull(result);
+			Assert.False(result.SmsSent);
+			Assert.Equal(command.PhoneNumber, result.PhoneNumber);
+			Assert.Equal(command.SmsText, result.SmsText);
+		}
     }
 }
