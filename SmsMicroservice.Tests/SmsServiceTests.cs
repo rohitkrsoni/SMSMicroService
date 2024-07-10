@@ -18,10 +18,11 @@ namespace SmsMicroservice.Tests
         private async Task<SmsSentEvent> InvokeSendSmsAsync(SendSmsCommand command)
         {
             var methodInfo = typeof(SMSMicroService.SmsMicroservice).GetMethod("SendSmsAsync", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            return await (Task<SmsSentEvent>)methodInfo.Invoke(_smsMicroservice, [command]);
-        }
+			var task = methodInfo != null ? methodInfo.Invoke(_smsMicroservice, new object[] { command }) as Task<SmsSentEvent> : throw new MethodAccessException("Method not found");
+			return task == null ? throw new InvalidOperationException("Command should not be NULL") : await task;
+		}
 
-        [Fact]
+		[Fact]
         public async Task SendSmsAsync_ValidCommand_ReturnsSmsSentEvent()
         {
             // Arrange
